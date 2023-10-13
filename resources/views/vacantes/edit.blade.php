@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Post a Job') }}
+            {{ __('Edit Vacancy') }}
         </h2>
     </x-slot>
     <div class="py-12">
@@ -9,9 +9,12 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{-- my-10, agregar margin --}}
-                    <h1 class="text-2xl font-bold text-center my-10">Post a Job</h1>
+                    <h1 class="text-2xl font-bold text-center my-10 uppercase">Edit Vacancy: {{ $vacante->titulo }}</h1>
                     <div class="md:flex md:justify-center text-center p-5">
-                        <livewire:crear-vacante />
+                        {{-- Pasamos la instancia hacia el componente --}}
+                        <livewire:editar-vacante 
+                            :vacante="$vacante"
+                        />
                     </div>
                 </div>
             </div>

@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Vacante;
 use Illuminate\Http\Request;
 
 class VacanteController extends Controller
 {
+    /* php artisan make:controller UsersController --resource */
     /**
      * Display a listing of the resource.
      */
@@ -43,9 +45,15 @@ class VacanteController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Vacante $vacante)
     {
-        //
+        /* php artisan make:policy VacantePolicy --model=Vacante */
+        /* Policies::update */
+        $this->authorize('update', $vacante);
+
+        return view('vacantes.edit', [
+            'vacante' => $vacante
+        ]);        
     }
 
     /**
