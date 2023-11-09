@@ -37,7 +37,7 @@ class VacantePolicy
      */
     public function update(User $user, Vacante $vacante): bool
     {
-        //
+        //php artisan make:policy NombrePolicy --model:Nombre
         return $user->id === $vacante->user_id;
     }
 

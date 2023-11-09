@@ -17,7 +17,8 @@
                     <a href="#" class="bg-slate-800 dark:bg-white py-2 px-4 rounded-lg text-whote text-xs font-bold uppercase text-center">Candidates</a>
                     {{-- Le pasamos el id al metodo edit --}}
                     <a href="{{ route('vacantes.edit', $vacante->id) }}" class="bg-blue-800 dark:bg-blue dark:text-white py-2 px-4 rounded-lg text-whote text-xs font-bold uppercase text-center">Edit</a>
-                    <a href="#" class="bg-red-800 dark:bg-red dark:text-white py-2 px-4 rounded-lg text-whote text-xs font-bold uppercase text-center">Delete</a>
+                    <button wire:click="$dispatch('mostrarAlerta', {{ $vacante->id }})" class="bg-red-800 dark:bg-red dark:text-white py-2 px-4 rounded-lg text-whote text-xs font-bold uppercase text-center">Delete</button>
+                    {{-- wire:click="prueba('{{ $vacante->id }}')" estos son eventos hacia el componente --}}
                 </div>
             </div>
         @empty
@@ -32,3 +33,35 @@
         {{ $vacantes->links() }}
     </div>
 </div>
+
+
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        Livewire.on('mostrarAlerta', (vacanteId) => {
+            Swal.fire({
+                title: "Are you sure you want to delete the vacancy?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, delete it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    //Eliminar la vacante
+                    Livewire.dispatch('eliminarVacante', {vacante: vacanteId})
+
+
+
+                    Swal.fire({
+                    title: "Deleted!",
+                    text: "Vacancy deleted succesfully.",
+                    icon: "success"
+                    });
+                }
+            });
+        });
+    </script>
+@endpush

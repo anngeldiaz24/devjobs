@@ -14,7 +14,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-        @livewireStyles()
+        @livewireStyles
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
@@ -35,6 +35,8 @@
             </main>
         </div>
 
-        @livewireScripts()
+        @livewireScripts
+        {{-- Agrega el script en el push de nuestro listado-vacantes --}}
+        @stack('scripts')
     </body>
 </html>
