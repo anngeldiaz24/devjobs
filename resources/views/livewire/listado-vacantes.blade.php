@@ -6,7 +6,7 @@
                 {{-- Alineas a la izquierda de md:flex hasta el final --}}
                 {{-- Incrementa el interlineado --}}
                 <div class="space-y-3">
-                    <a href="#" class="text-xl font-bold dark:text-gray-100">
+                    <a href="{{ route('vacantes.show', $vacante->id) }}" class="text-xl font-bold dark:text-gray-100">
                         {{ $vacante->titulo }}
                     </a>
                     <p class="dark:text-white text-sm text-gray-600 font-bold">{{ $vacante->empresa }}</p>
