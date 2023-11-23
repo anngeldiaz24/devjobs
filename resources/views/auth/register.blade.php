@@ -24,6 +24,7 @@
                 <option value="1">Developer - Get a Job</option>
                 <option value="2">Recruiter - Post a Job</option>
             </select>
+            <x-input-error :messages="$errors->get('rol')" class="mt-2" />
         </div>
 
         <!-- Password -->
