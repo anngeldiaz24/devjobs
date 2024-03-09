@@ -39,4 +39,10 @@
             </p>
         </div>
     @endguest
+
+    {{--  Un usuario con rol de reclutador puede crear a través de policy --}}
+    @cannot('create', App\Models\Vacante::class)
+        <livewire:postular-vacante />
+    @endcannot
+    
 </div>
