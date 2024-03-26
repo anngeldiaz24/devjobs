@@ -12,22 +12,24 @@
 
                 {{-- Se ejecuta solo si el usuario esta autenticado --}}
                 @auth
-                    <!-- Navigation Links -->
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-nav-link :href="route('vacantes.index')" :active="request()->routeIs('vacantes.index')">
-                            {{ __('My Vacancies') }}
-                        </x-nav-link>
-                        <x-nav-link :href="route('vacantes.create')" :active="request()->routeIs('vacantes.create')">
-                            {{ __('Post a Job') }}
-                        </x-nav-link>
-                    </div>
+                    @can('create', App\Models\Vacante::class)
+                        <!-- Navigation Links -->
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <x-nav-link :href="route('vacantes.index')" :active="request()->routeIs('vacantes.index')">
+                                {{ __('My Vacancies') }}
+                            </x-nav-link>
+                            <x-nav-link :href="route('vacantes.create')" :active="request()->routeIs('vacantes.create')">
+                                {{ __('Post a Job') }}
+                            </x-nav-link>
+                        </div>
+                    @endcan
                 @endauth
             </div>
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 @auth
-                    @if (auth()->user()->rol == 2)
+                    @can('create', App\Models\Vacante::class)
                         <div class="flex items-center"> 
                             <a href="{{ route('notificaciones') }}" class="flex items-center"> 
                                 <i class="fas fa-bell text-indigo-600" style="font-size: 1.5em;"></i>
@@ -36,7 +38,7 @@
                                 </span>
                             </a>
                         </div> 
-                    @endif
+                    @endcan
                 
             
 

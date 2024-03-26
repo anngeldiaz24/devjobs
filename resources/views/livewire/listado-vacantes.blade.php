@@ -14,10 +14,13 @@
                 </div>
                 
                 <div class="flex flex-col md:flex-row items-stretch gap-3 mt-5 md:mt-0">
-                    <a href="#" class="dark:text-black dark:bg-white bg-gray-200 dark:hover:bg-gray-300 hover:bg-gray-300 py-2 px-4 rounded-lg text-xs font-bold uppercase text-center">Candidates</a>
+                    <a href="{{ route('candidatos.index', $vacante) }}" class="dark:text-black dark:bg-white bg-gray-200 dark:hover:bg-gray-300 hover:bg-gray-300 py-2 px-4 rounded-lg text-xs font-bold uppercase text-center">
+                        {{ $vacante->candidatos->count() }}
+                        Candidates
+                    </a>
 
                     {{-- Le pasamos el id al metodo edit --}}
-                    <a href="{{ route('vacantes.edit', $vacante->id) }}" class="bg-blue-800 dark:bg-blue text-white py-2 px-4 rounded-lg text-whote text-xs font-bold uppercase text-center">Edit</a>
+                    <a href="{{ route('vacantes.edit', $vacante) }}" class="bg-blue-800 dark:bg-blue text-white py-2 px-4 rounded-lg text-whote text-xs font-bold uppercase text-center">Edit</a>
                     <button wire:click="$dispatch('mostrarAlerta', {{ $vacante->id }})" class="bg-red-800 dark:bg-red text-white py-2 px-4 rounded-lg text-whote text-xs font-bold uppercase text-center">Delete</button>
                     {{-- wire:click="prueba('{{ $vacante->id }}')" estos son eventos hacia el componente --}}
                 </div>
