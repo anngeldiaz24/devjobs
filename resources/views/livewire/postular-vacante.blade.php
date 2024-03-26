@@ -1,4 +1,4 @@
-<div class="bg-gray-800 p-5 mt-10 flex flex-col justify-center items-center">
+<div class="dark:bg-gray-800 p-5 mt-10 flex flex-col justify-center items-center">
     <h3 class="text-center text-2xl font-bold my-4">Apply for this job</h3>
 
     @if (session()->has('mensaje'))

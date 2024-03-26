@@ -27,6 +27,19 @@
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ml-6">
                 @auth
+                    @if (auth()->user()->rol == 2)
+                        <div class="flex items-center"> 
+                            <a href="{{ route('notificaciones') }}" class="flex items-center"> 
+                                <i class="fas fa-bell text-indigo-600" style="font-size: 1.5em;"></i>
+                                <span class="bg-indigo-600 text-white text-sm font-extrabold rounded-full h-7 w-7 flex justify-center items-center mb-5 mr-2"> 
+                                    {{ auth()->user()->unreadNotifications->count() }}
+                                </span>
+                            </a>
+                        </div> 
+                    @endif
+                
+            
+
                     <x-dropdown align="right" width="48">
                         <x-slot name="trigger">
                             <button class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 dark:text-gray-400 bg-white dark:bg-gray-800 hover:text-gray-700 dark:hover:text-gray-300 focus:outline-none transition ease-in-out duration-150">
@@ -95,6 +108,20 @@
                 <x-responsive-nav-link :href="route('vacantes.create')" :active="request()->routeIs('vacantes.create')">
                     {{ __('Post a Job') }}
                 </x-responsive-nav-link>
+                @if (auth()->user()->rol == 2)
+                    <div class="flex items-center"> 
+                        <div class="flex gap-2 items-center p-3">
+                            <a href="{{ route('notificaciones') }}" class="flex items-center"> 
+                                <span class="bg-indigo-600 text-white text-sm font-extrabold rounded-full h-7 w-7 flex justify-center items-center mr-2"> 
+                                    {{ auth()->user()->unreadNotifications->count() }}
+                                </span>
+                            </a>
+                            <p class="text-base font-medium text-gray-600">
+                                @choice('Notification|Notifications', auth()->user()->unreadNotifications->count())
+                            </p>
+                        </div>
+                    </div> 
+                @endif
             </div>
 
             <!-- Responsive Settings Options -->
