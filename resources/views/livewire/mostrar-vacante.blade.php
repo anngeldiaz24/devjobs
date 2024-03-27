@@ -29,7 +29,6 @@
             <h2 class="text-2xl dont-bold mb-5">Job Description: </h2>
             <p>{{ $vacante->descripcion }}</p>
         </div>
-
     </div>
 
     @guest
@@ -40,9 +39,11 @@
         </div>
     @endguest
 
-    {{--  Un usuario con rol de reclutador puede crear a través de policy --}}
-    @cannot('create', App\Models\Vacante::class)
-        <livewire:postular-vacante :vacante="$vacante" />
-    @endcannot
+    @if (Auth::user())
+        {{--  Un usuario con rol de reclutador no puede aplicar para la vacante a través de policy --}}
+        @cannot('create', App\Models\Vacante::class)
+            <livewire:postular-vacante :vacante="$vacante" />
+        @endcannot
+    @endif
 
 </div>
