@@ -10,6 +10,8 @@
                         <div class="md:flex-1 sm:mt-10">
                             <a class="text-3xl font-extrabold text-gray-600 dark:text-white" href="{{ route('vacantes.show', $vacante->id) }}">{{ $vacante->titulo }}</a>
                             <p class="text-base text-gray-600 dark:text-white">{{ $vacante->empresa }}</p>
+                            <p class="text-xs font-bold text-gray-600 dark:text-white">{{ $vacante->categoria->categoria }}</p>
+                            <p class="text-base text-gray-600 dark:text-white">{{ $vacante->salario->salario }}</p>
                             <p class="font-bold text-xs dark:text-white">
                                 Last day to apply:
                                 <span class="dark:text-white">{{ $vacante->ultimo_dia->format('d/m/Y') }}</span>
